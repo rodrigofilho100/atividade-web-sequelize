@@ -2,7 +2,7 @@ const {
     Model,
     DataTypes
 } = require("sequelize");
-
+const Autor=require('./Autor');
 const sequelize = require("../config/database");
 
 class Livro extends Model{}
@@ -44,6 +44,4 @@ Livro.init({
         tableName: "livros"
 }
 );
-Livro.belongsTo(Autor, {foreignKey: "autorId"});
-Livro.belongsToMany(Categoria, {through: "LivroCategoria"});
 module.exports = Livro;

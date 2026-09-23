@@ -26,5 +26,5 @@ Categoria.init({
         tableName: "categorias"
 }
 )
-Categoria.belongsToMany(Livro, {through: "LivroCategoria"});
+
 module.exports = Categoria;

@@ -1,3 +1,4 @@
+const {Livro} = require('./Livro');
 const {
     Model,
     DataTypes
@@ -35,5 +36,4 @@ Autor.init({
         tableName: "autores"
 }
 );
-Autor.hasMany(Livro, {foreignKey: "autorId"});
 module.exports = Autor;
