@@ -1,4 +1,4 @@
-const {Livro, Autor}=require(../models);
+const {Livro, Autor}=require('../models');
 const {Op}=require(sequelize)
 class LivroRepository{
     listarTodos(condicoes){
@@ -15,6 +15,13 @@ class LivroRepository{
     }
     buscarDisponiveis(){
         return Livro.findAll({where: {disponivel: true}});
+    }
+    buscarComPaginacao(limite, offsett){
+        return Livro.findAndCountAll({
+            limit: limite,
+            offsett: offsett,
+            include: Autor
+        });
     }
 
     criar(dados){

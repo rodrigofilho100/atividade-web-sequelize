@@ -11,7 +11,7 @@ class AutorService{
     async procurarPorId(id){
         const autor=await this.repository.buscarPorId(id);
         if (!autor){
-            throw new Error({"erro": "Autor não encontrado"});
+            throw {"erro": "Autor não encontrado"};
         }
         else return autor;
     }
@@ -20,7 +20,7 @@ class AutorService{
     }
     async excluir(id){
         const autor=await this.repository.buscarPorId(id);
-        if (!autor) throw new Error("erro": "Autor não encontrado");
+        if (!autor) throw {"erro": "Autor não encontrado"};
         else return this.repository.excluir(id);
     }
 }

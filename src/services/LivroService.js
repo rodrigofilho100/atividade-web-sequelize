@@ -18,9 +18,9 @@ class LivroService{
         else return livro;
     }
     async buscaAvancada(filtro){
-        condicoes={}
+        condicoes={};
         if (filtro.titulo){
-            condicoes.titulo=[Op.like]: `%${filtros.titulo}%`;
+            condicoes.titulo={[Op.like]: `%${filtros.titulo}%`};
         }
         if (filtro.ano){
             condicoes.ano= Number(filtro.ano);
@@ -30,7 +30,9 @@ class LivroService{
         }
         return this.repository.listarTodos(condicoes);
     }
-    
+    async buscaComPaginacao(limite, offset){
+        return this.repository.buscarComPaginacao(limite, offset);
+    }
 
     async atualizar(id, dados){
         return this.repository.atualizar(id, dados);
@@ -38,7 +40,7 @@ class LivroService{
 
     async excluir(id){
         const livro=await this.repository.buscarPorId(id);
-        if (!livro) throw new Error("erro": "Livro não encontrado");
+        if (!livro) throw new Error({"erro": "Livro não encontrado"});
         else return this.repository.excluir(id);
     }
 }

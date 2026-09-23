@@ -13,7 +13,7 @@ class CategoriaService{
     async procurarPorId(id){
         const categoria=await this.repository.buscarPorId(id);
         if (!categoria){
-            throw new Error({"erro": "Categoria não encontrada"});
+            throw {"erro": "Categoria não encontrada"};
         }
         else return categoria;
     }
@@ -24,7 +24,7 @@ class CategoriaService{
 
     async excluir(id){
         const categoria=await this.repository.buscarPorId(id);
-        if (!categoria) throw new Error("erro": "Categoria não encontrada");
+        if (!categoria) throw {"erro": "Categoria não encontrada"};
         else return this.repository.excluir(id);
     }
 }

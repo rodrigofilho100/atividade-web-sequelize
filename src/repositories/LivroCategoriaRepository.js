@@ -1,4 +1,4 @@
-const {Livro, Categoria}=require(../models);
+const {Livro, Categoria}=require('../models');
 
 class LivroCategoriaRepository{
     associar(dados){

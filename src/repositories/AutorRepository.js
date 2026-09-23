@@ -1,4 +1,4 @@
-const {Autor}=require(../models);
+const {Autor}=require('../models');
 
 class AutorRepository{
     listarTodos(){
