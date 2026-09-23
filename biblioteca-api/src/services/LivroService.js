@@ -25,8 +25,8 @@ class LivroService{
         if (filtro.ano){
             condicoes.ano= Number(filtro.ano);
         }
-        if (filtros.disponivel !== undefined) {
-            condicoes.disponivel = filtros.disponivel === 'true';
+        if (filtro.disponivel !== undefined) {
+            condicoes.disponivel = filtro.disponivel === 'true';
         }
         return this.repository.listarTodos(condicoes);
     }
