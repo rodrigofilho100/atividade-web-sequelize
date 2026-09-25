@@ -4,7 +4,7 @@
   "description": "Integrante 1: João Gustavo Barbosa Matias",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
