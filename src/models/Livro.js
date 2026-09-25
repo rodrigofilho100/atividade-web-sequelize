@@ -1,8 +1,8 @@
+const Autor=require("./Autor");
 const {
     Model,
     DataTypes
 } = require("sequelize");
-const Autor=require('./Autor');
 const sequelize = require("../config/database");
 
 class Livro extends Model{}
@@ -23,7 +23,7 @@ Livro.init({
     unique: true
   },
   ano:{
-    type: DataTypes.BOOLEAN,
+    type: DataTypes.DATE,
     allowNull: false,
     defaultValue:true
   },
@@ -34,7 +34,13 @@ Livro.init({
   },
   autorId:{
     type: DataTypes.INTEGER,
-    allowNull: false
+    references:{
+      // por algum motivo o sequelize confunde model com table, então coloquei autores em vez de Autor
+      model: 'autores', 
+      key: 'autorId'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
   }
 },
     {

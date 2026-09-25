@@ -1,12 +1,14 @@
 const Autor = require("./Autor");
-const Livro = require("./Livro");
 const Categoria = require("./Categoria");
+const Livro = require("./Livro");
 const LivroCategoria = require("./LivroCategoria");
 
 // Livro e Autor (1:N)
-Livro.belongsTo(Models.Autor, {foreignKey: "autorId"});
+Livro.belongsTo(Autor, {foreignKey: "autorId"});
 Autor.hasMany(Livro, {foreignKey: "autorId"});
 
 // Livro e Categoria (N:N)
-Livro.belongsToMany(Categoria, {through: "LivroCategoria"});
-Categoria.belongsToMany(Livro, {through: "LivroCategoria"});
+Livro.belongsToMany(Categoria, {through: LivroCategoria, foreignKey: "livroId"});
+Categoria.belongsToMany(Livro, {through: LivroCategoria, foreignKey: "categoriaId"});
+
+module.exports={Autor, Livro, Categoria, LivroCategoria};

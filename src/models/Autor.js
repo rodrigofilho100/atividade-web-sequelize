@@ -1,4 +1,3 @@
-const {Livro} = require('./Livro');
 const {
     Model,
     DataTypes
@@ -31,9 +30,9 @@ Autor.init({
 },
     {
         sequelize,
-        modelName: "Autor"
-        ,
-        tableName: "autores"
+        modelName: 'Autor',
+        tableName: 'autores',
+        freezeTableName: true
 }
 );
 module.exports = Autor;

@@ -1,10 +1,15 @@
+const LivroRepository=require('../repositories/LivroRepository');
 class LivroService{
-    constructor(livroRepository){
-        this.repository=livroRepository;
+    constructor(repositorio){
+        this.repository=repositorio;
     }
     
     async cadastrar(dados){
-        return this.repository.criar(dados);
+        try{
+            return this.repository.criar(dados);
+        } catch (error){
+            throw {message: error.message};
+        }
     }
 
     async listarTodos(){
@@ -13,7 +18,7 @@ class LivroService{
     async procurarPorId(id){
         const livro=await this.repository.buscarPorId(id);
         if (!livro){
-            throw new Error({"erro": "Livro não encontrado"});
+            throw new Error({message: "Livro não encontrado"});
         }
         else return livro;
     }
@@ -40,8 +45,12 @@ class LivroService{
 
     async excluir(id){
         const livro=await this.repository.buscarPorId(id);
-        if (!livro) throw new Error({"erro": "Livro não encontrado"});
+        if (!livro) throw new Error({message: "Livro não encontrado"});
         else return this.repository.excluir(id);
     }
+
+    async vincularCategoria(dados){
+        return LivroRepository.associarCategoria(dados);
+    }
 }
-module.exports=LivroService
+module.exports=new LivroService(LivroRepository);

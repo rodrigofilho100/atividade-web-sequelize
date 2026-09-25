@@ -1,4 +1,4 @@
-const {Autor}=require('../models');
+const Autor=require('../models/Autor');
 
 class AutorRepository{
     listarTodos(){
@@ -14,7 +14,7 @@ class AutorRepository{
         return Autor.update(dados, {where: {autorId: id}});
     }
     excluir(id){
-        return Autor.destroy({where: {id: autorId}});
+        return Autor.destroy({where: {autorId: id}});
     }
 }
-module.exports=AutorRepository
+module.exports=new AutorRepository

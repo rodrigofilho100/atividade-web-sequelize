@@ -3,6 +3,7 @@ const livroControler = require("../controllers/LivroController.js");
 
 const router = Router();
 
+router.post("/:livroId/categorias/:categoriaId", (req, res)=> livroControler.vincularCategoria(req, res));
 router.post("/", (req,res) => livroControler.criar(req,res));
 router.get("/", (req,res) => livroControler.listar(req,res));
 router.get("/:id", (req,res) => livroControler.buscarPorId(req,res));

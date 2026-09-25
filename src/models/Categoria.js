@@ -12,10 +12,13 @@ Categoria.init({
         autoIncrement:true
     },
     nome:{
-        type: DataTypes.STRING,allowNull: false, unique:true
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique:true
     },
     descricao:{
-        type: DataTypes.TEXT,allowNull: true
+        type: DataTypes.TEXT,
+        allowNull: true
     }
 },
 

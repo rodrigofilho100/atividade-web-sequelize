@@ -1,4 +1,3 @@
-const express = require("express");
 const autorService = require("../services/AutorService");
 
 class AutorController{
@@ -24,7 +23,7 @@ class AutorController{
             const autor = await autorService.procurarPorId(id);
             return res.status(200).json(autor);
         }catch(error){
-            return res.status(400).json({erro:error.message});
+            return res.status(400).json({erro: error.message});
         }
     }
     async deletar(req,res){
@@ -33,7 +32,7 @@ class AutorController{
             await autorService.excluir(id);
             return res.status(200).json({mensagem: "Autor removido com sucesso"});
         }catch(error){
-            return res.status(404).json({erro:error.message});
+            return res.status(404).json({erro: error.message});
         }
     }
     async atualizar(req,res){
@@ -46,3 +45,5 @@ class AutorController{
         }
     }
 }
+
+module.exports= new AutorController;

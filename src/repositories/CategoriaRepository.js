@@ -1,4 +1,4 @@
-const {Categoria}=require('../models');
+const Categoria=require('../models/Categoria');
 
 class CategoriaRepository{
     listarTodos(){
@@ -17,4 +17,4 @@ class CategoriaRepository{
         return Categoria.destroy({where: {categoriaId: id}});
     }
 }
-module.exports=CategoriaRepository
+module.exports=new CategoriaRepository

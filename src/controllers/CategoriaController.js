@@ -1,7 +1,7 @@
 const express = require("express");
 const categoriasService = require("../services/CategoriaService");
 
-class CategoriasController{
+class CategoriaController{
     async criar(req,res){
         try{
             const categoria = await categoriasService.cadastrar(req.body);
@@ -47,4 +47,4 @@ class CategoriasController{
     }
 }
 
-module.exports = new CategoriasController();
+module.exports = new CategoriaController;

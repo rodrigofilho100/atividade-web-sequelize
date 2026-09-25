@@ -1,10 +1,16 @@
+const CategoriaRepository = require("../repositories/CategoriaRepository");
+
 class CategoriaService{
-    constructor(categoriaRepository){
-        this.repository=categoriaRepository;
+    constructor(repositorio){
+        this.repository=repositorio;
     }
     
     async cadastrar(dados){
-        return this.repository.criar(dados);
+        try{
+            return this.repository.criar(dados);
+        } catch (error){
+            throw {message: error.message};
+        }
     }
 
     async listarTodos(){
@@ -13,7 +19,7 @@ class CategoriaService{
     async procurarPorId(id){
         const categoria=await this.repository.buscarPorId(id);
         if (!categoria){
-            throw {"erro": "Categoria não encontrada"};
+            throw {message: "Categoria não encontrada"};
         }
         else return categoria;
     }
@@ -24,8 +30,8 @@ class CategoriaService{
 
     async excluir(id){
         const categoria=await this.repository.buscarPorId(id);
-        if (!categoria) throw {"erro": "Categoria não encontrada"};
+        if (!categoria) throw {message: "Categoria não encontrada"};
         else return this.repository.excluir(id);
     }
 }
-module.exports=CategoriaService
+module.exports=new CategoriaService(CategoriaRepository);

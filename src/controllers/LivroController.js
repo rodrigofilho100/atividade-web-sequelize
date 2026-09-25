@@ -1,5 +1,7 @@
 const express = require("express");
 const livroService = require("../services/LivroService");
+const LivroRepository = require("../repositories/LivroRepository");
+const LivroService = require("../services/LivroService");
 
 class LivroController{
     async criar(req,res){
@@ -14,6 +16,15 @@ class LivroController{
         try{
             const {titulo, ano, disponivel} = req.query;
             const livros = await livroService.listarTodos({titulo,ano,disponivel});
+            return res.status(200).json(livros);
+        }catch(error){
+            return res.status(500).json({erro: error.message});
+        }
+    }
+    async listar(req,res){
+        try{
+            const {page = 1, limit = 10, titulo, ano, disponivel} = req.query;
+            const livros = await livroService.listarTodos({page:Number(page), limit: Number(limit), titulo,ano,disponivel});
             return res.status(200).json(livros);
         }catch(error){
             return res.status(500).json({erro: error.message});
@@ -40,12 +51,24 @@ class LivroController{
     async atualizar(req,res){
         try{
             const {id} = req.params;
-            const livroAtualizado = await livroService.atualizarLivro(id,req.body);
+            const livroAtualizado = await livroService.atualizar(id,req.body);
             return res.status(200).json(livroAtualizado);
         }catch(error){
             return res.status(400).json({error:error.message});
         }
     }
+    async vincularCategoria(req, res){
+        try{
+            const {livroId, categoriaId} =req.params;
+            const relacao= await LivroService.vincularCategoria({
+                livroId: Number(livroId),
+                categoriaId: Number(categoriaId)
+            });
+            return res.status(200).json(relacao);
+        }catch (error){
+            return res.status(400).json({error: error.message});
+        }
+    }
 }
 
-module.exports = new LivroController();
+module.exports = new LivroController;

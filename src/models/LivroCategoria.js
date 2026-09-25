@@ -3,20 +3,21 @@ Model,
 DataTypes
 } = require("sequelize");
 const sequelize = require("../config/database");
+
 class LivroCategoria extends Model {}
 
 LivroCategoria.init({
     livroId:{
         type: DataTypes.INTEGER,
-        references: {model: 'Livro', key: 'livroId'}
+        references: {model: 'livros', key: 'livroId'}
     },
     categoriaId:{
         type: DataTypes.INTEGER,
-        references: {model: 'Categoria', key: "categoriaId"}
+        references: {model: 'categorias', key: "categoriaId"}
     }
     },
 
-    {sequelize, modelName: "LivroCategoria"}
+    {sequelize, modelName: "LivroCategoria", tableName: "livrosCategorias"}
 )
 
 module.exports = LivroCategoria;
