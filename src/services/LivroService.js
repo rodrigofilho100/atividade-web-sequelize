@@ -1,3 +1,4 @@
+const {Op}=require("sequelize");
 const LivroRepository=require('../repositories/LivroRepository');
 class LivroService{
     constructor(repositorio){
@@ -12,9 +13,6 @@ class LivroService{
         }
     }
 
-    async listarTodos(){
-        return this.repository.listarTodos();
-    }
     async procurarPorId(id){
         const livro=await this.repository.buscarPorId(id);
         if (!livro){
@@ -22,10 +20,10 @@ class LivroService{
         }
         else return livro;
     }
-    async buscaAvancada(filtro){
-        condicoes={};
+    async listarTodos(filtro){
+        const condicoes={};
         if (filtro.titulo){
-            condicoes.titulo={[Op.like]: `%${filtros.titulo}%`};
+            condicoes.titulo={[Op.like]: `%${filtro.titulo}%`};
         }
         if (filtro.ano){
             condicoes.ano= Number(filtro.ano);
@@ -33,10 +31,11 @@ class LivroService{
         if (filtro.disponivel !== undefined) {
             condicoes.disponivel = filtro.disponivel === 'true';
         }
+
         return this.repository.listarTodos(condicoes);
     }
-    async buscaComPaginacao(limite, offset){
-        return this.repository.buscarComPaginacao(limite, offset);
+    async buscaComPaginacao(limite, paginas){
+        return this.repository.buscarComPaginacao(limite, paginas);
     }
 
     async atualizar(id, dados){

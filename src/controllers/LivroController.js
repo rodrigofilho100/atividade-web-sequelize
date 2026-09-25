@@ -14,18 +14,24 @@ class LivroController{
     }
     async listar(req,res){
         try{
-            const {titulo, ano, disponivel} = req.query;
-            const livros = await livroService.listarTodos({titulo,ano,disponivel});
-            return res.status(200).json(livros);
-        }catch(error){
-            return res.status(500).json({erro: error.message});
-        }
-    }
-    async listar(req,res){
-        try{
-            const {page = 1, limit = 10, titulo, ano, disponivel} = req.query;
-            const livros = await livroService.listarTodos({page:Number(page), limit: Number(limit), titulo,ano,disponivel});
-            return res.status(200).json(livros);
+            const {page, limit, titulo, ano, disponivel} = req.query;
+
+            if (limit || page){
+                const {count, rows} = await livroService.buscaComPaginacao(limit, page);
+                return res.json({
+                    data: rows,
+                    pagination: {
+                        page: Number(page),
+                        limit: Number(limit),
+                        total: count,
+                        totalPages: Math.ceil(count / page)
+                    }
+                });
+            }
+            else{
+                const livros = await livroService.listarTodos({titulo,ano,disponivel});
+                return res.status(200).json(livros);
+            }
         }catch(error){
             return res.status(500).json({erro: error.message});
         }

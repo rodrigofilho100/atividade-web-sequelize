@@ -19,10 +19,10 @@ class LivroRepository{
     buscarDisponiveis(){
         return Livro.findAll({where: {disponivel: true}});
     }
-    buscarComPaginacao(limite, offsett){
+    buscarComPaginacao(limite, page){
         return Livro.findAndCountAll({
             limit: limite,
-            offsett: offsett,
+            offset: (page-1) * limite,
             include: Autor
         });
     }
