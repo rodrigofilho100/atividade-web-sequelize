@@ -40,7 +40,8 @@ Livro.init({
       key: 'autorId'
     },
     onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
+    onDelete: 'CASCADE',
+    allowNull: false
   }
 },
     {

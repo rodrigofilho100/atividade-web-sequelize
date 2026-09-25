@@ -1,21 +1,14 @@
 const express=require('express');
 const app=express();
 
-const {Autor, Livro, Categoria, LivroCategoria}=require('./models/index');
+const usuario=require("./models/Usuario");
+const emprestimo=require("./models/Emprestimo");
+const LivroService=require("./services/LivroService");
 
 const autorRoutes=require('./routes/autorRoutes');
 const livroRoutes=require('./routes/livroRoutes');
 const categoriaRoutes=require('./routes/categoriaRoutes');
 
-const AutorRepository=require('./repositories/AutorRepository');
-const LivroRepository=require('./repositories/LivroRepository');
-const CategoriaRepository=require('./repositories/CategoriaRepository');
-
-const AutorService=require('./services/AutorService');
-const LivroService=require('./services/LivroService');
-const CategoriaService=require('./services/CategoriaService');
-
-const LivroController=require("./controllers/LivroController");
 const sequelize = require("./config/database");
 
 app.use(express.json());
@@ -32,19 +25,36 @@ async function testarBanco() {
     try {
         await sequelize.authenticate();
         await sequelize.sync();
-        
         console.log("Banco conectado!");
 
-        
-        //const tables = await sequelize.getQueryInterface().showAllSchemas();
-        //console.log(tables); 
-        //await CategoriaRepository.excluir(1);
-        /*await AutorService.cadastrar({
-            nome: "Rodrick Heffley",
-            email: "heffleylodeddiper@gmail.com"
-        });
-        console.log(await AutorService.listarTodos());*/
-        
+        // Como não foi especificado na atividade se deveria haver
+        // Repository, Service, Controller e Routes para Usuário e Empréstimo, 
+        // fiz a transação diretamente pelo app.js mesmo
+        const t = await sequelize.transaction();
+        // usuário já criado no BD
+        /*console.log(await usuario.create({
+                "nome": "Rodrigo",
+                "email": "rodrigo@gmail.com",
+                "senha": "12345"
+        }));*/
+        try {
+            console.log(await emprestimo.create({
+                "usuarioId": 4,
+                "livroId": 1,
+                "dataEmprestimo": "2026/09/30",
+                "dataDevolucao": "2026/10/30",
+                "status": "Ativo"
+            }, {transaction: t}));
+            console.log(await LivroService.atualizar(1, {
+                "disponivel": false,
+                "transaction": t
+            }))
+            console.log("Transação realizada com sucesso");
+            await t.commit();
+        } catch (error){
+            console.log(error);
+            await t.rollback();
+        }
     } 
     catch (error) {
         console.error({"Erro": error});

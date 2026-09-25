@@ -9,11 +9,13 @@ class LivroCategoria extends Model {}
 LivroCategoria.init({
     livroId:{
         type: DataTypes.INTEGER,
-        references: {model: 'livros', key: 'livroId'}
+        references: {model: 'livros', key: 'livroId'},
+        allowNull: false
     },
     categoriaId:{
         type: DataTypes.INTEGER,
-        references: {model: 'categorias', key: "categoriaId"}
+        references: {model: 'categorias', key: "categoriaId"},
+        allowNull: false
     }
     },
 

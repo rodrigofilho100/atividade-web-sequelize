@@ -1,8 +1,4 @@
-const Livro=require('../models/Livro');
-const Autor=require('../models/Autor');
-const Categoria=require('../models/LivroCategoria');
-const {Op}=require('sequelize');
-const LivroCategoria = require('../models/LivroCategoria');
+const {Livro, Autor, LivroCategoria} = require("../models");
 class LivroRepository{
     listarTodos(condicoes){
         return Livro.findAll({include: Autor, where: condicoes});
@@ -22,7 +18,7 @@ class LivroRepository{
         return Livro.create(dados);
     }
     atualizar(id, dados){
-        return Livro.update(dados, {where: {livroId: id}});
+        return Livro.update(dados, {where: {livroId: id}, transaction: dados.transaction});
     }
     excluir(id){
         return Livro.destroy({where:{livroId: id}});
