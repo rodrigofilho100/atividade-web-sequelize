@@ -10,15 +10,6 @@ class LivroRepository{
     buscarPorId(id){
         return Livro.findByPk(id);
     }
-    buscarPorTitulo(t){
-        return Livro.findAll({where: {titulo: {[Op.like]: `%${t}%`}}});
-    }
-    buscarPorAno(a){
-        return Livro.findAll({where: {ano: a}});
-    }
-    buscarDisponiveis(){
-        return Livro.findAll({where: {disponivel: true}});
-    }
     buscarComPaginacao(limite, page){
         return Livro.findAndCountAll({
             limit: limite,
