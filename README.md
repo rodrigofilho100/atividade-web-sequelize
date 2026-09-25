@@ -56,11 +56,11 @@ npm start
 
 É possível buscar livros de acordo com título, ano e disponibilidade. Exemplos:
 
-Buscar livro cujo título contenha a palavra "Quixote": ```bash GET /livros?titulo=Quixote```
+Buscar livro cujo título contenha a palavra "Quixote": ```GET /livros?titulo=Quixote```
 
-Buscar livro do ano de 1880 que esteja disponível: ```bash GET /livros?ano=1880&disponivel=true```
+Buscar livro do ano de 1880 que esteja disponível: ```GET /livros?ano=1880&disponivel=true```
 
 #### Paginação de busca de livros:
 
 É possível limitar o número de resultados em buscas de livros. Exemplo:
-Buscar os livros de 11 a 20: ```bash GET /livros?page=2&limit=20
+Buscar os livros de 11 a 20: ```GET /livros?page=2&limit=20```
