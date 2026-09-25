@@ -26,7 +26,7 @@ npm start
 | :--- | :--- | :--- |
 | **GET** | `/autores` | Retorna a lista de todos os autores |
 | **GET** | `/autores/:id` | Busca autor por ID |
-| **POST** | `/autores` | Cria um novo autor (caso todos os dados sejam válidos) |
+| **POST** | `/autores` | Cria um novo autor|
 | **DELETE** | `/autores/:id` | Exclui autor do banco de dados por ID |
 | **PUT** | `/autores/:id` | Atualiza os dados de um autor |
 
@@ -37,7 +37,7 @@ npm start
 | **GET** | `/categorias` | Retorna a lista de todas as categorias de livros |
 | **GET** | `/categorias/:id` | Busca categoria por ID |
 | **POST** | `/categorias` | Cria uma nova categoria |
-| **DELETE** | `/categorias/:id` | Exclui categoria do banco de dados |
+| **DELETE** | `/categorias/:id` | Exclui categoria do banco de dados por ID |
 | **PUT** | `/categorias/:id` | Atualiza dados da categoria |
 
 ### Livros
@@ -46,9 +46,9 @@ npm start
 | :--- | :--- | :--- |
 | **GET** | `/livros` | Retorna a lista de todos os livros e seus autores |
 | **GET** | `/livros/:id` | Busca livro por ID |
-| **POST** | `/livros` | Cria um novo livro de acordo com os dados fornecidos |
+| **POST** | `/livros` | Cria um novo livro|
 | **POST** | `/livros/:livroId/categorias/:categoriaId` | Associa um livro a uma categoria |
-| **DELETE** | `/livros/:id` | Excluir livro de banco de dados |
+| **DELETE** | `/livros/:id` | Exclui livro de banco de dados |
 | **PUT** | `/livros/:id` | Atualiza os dados do livro |
 
 #### Busca avançada de livros:
@@ -62,4 +62,5 @@ Buscar livro do ano de 1880 que esteja disponível: ```GET /livros?ano=1880&disp
 #### Paginação de busca de livros:
 
 É possível limitar o número de resultados em buscas de livros. Exemplo:
-Buscar os livros de 11 a 20: ```GET /livros?page=2&limit=20```
+
+Buscar os livros de 11 a 20: ```GET /livros?page=2&limit=10```
