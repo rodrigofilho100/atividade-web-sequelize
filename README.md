@@ -37,7 +37,7 @@ npm start
 | **GET** | `/categorias` | Retorna a lista de todas as categorias de livros |
 | **GET** | `/categorias/:id` | Busca categoria por ID |
 | **POST** | `/categorias` | Cria uma nova categoria |
-| **DELETE** | `/categorias` | Exclui categoria do banco de dados |
+| **DELETE** | `/categorias/:id` | Exclui categoria do banco de dados |
 | **PUT** | `/categorias/:id` | Atualiza dados da categoria |
 
 ### Livros
@@ -46,7 +46,6 @@ npm start
 | :--- | :--- | :--- |
 | **GET** | `/livros` | Retorna a lista de todos os livros e seus autores |
 | **GET** | `/livros/:id` | Busca livro por ID |
-| **GET** | `/livros
 | **POST** | `/livros` | Cria um novo livro de acordo com os dados fornecidos |
 | **POST** | `/livros/:livroId/categorias/:categoriaId` | Associa um livro a uma categoria |
 | **DELETE** | `/livros/:id` | Excluir livro de banco de dados |
