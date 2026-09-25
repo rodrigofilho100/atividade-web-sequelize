@@ -63,4 +63,4 @@ Buscar livro do ano de 1880 que esteja disponível: ```GET /livros?ano=1880&disp
 
 É possível limitar o número de resultados em buscas de livros. Exemplo:
 
-Buscar os livros de 11 a 20: ```GET /livros?page=2&limit=10```
+Buscar os livros de IDs 11 a 20: ```GET /livros?page=2&limit=10```
